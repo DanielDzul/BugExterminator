@@ -1,0 +1,162 @@
+﻿@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Daniel Dazul BugTracker</title>
+    
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/BounceCss.css" rel="stylesheet" />
+    <script src="~/Scripts/Bouncejs.js"></script>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
+</head>
+<body style="background-color:black;">
+<div class="row" style="text-align:center;">
+    <div class="col-lg-12" style="text-align:center;">
+        <h1 style="color:red; width:400px; height:100px; font-family:lobster;">Bug Stalker</h1>
+    </div>
+</div>
+    <div class="container text-center">
+        <br></br>
+        <div class="rowtext-center">
+            <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                <div class="flipper">
+                    <div class="front">
+                        <div id="ballWrapper">
+                            <div id="ball">
+                                <img class="center-block img-responsive" src="~/img/insect blue.png" alt="blue bug" width="75" style="margin: 25px 0px 0px 37px;">
+                            </div>
+                            <div id="ballShadow"></div>
+                        </div>
+                    </div>
+                    <a href="@Url.Action("Register","Account")">
+                        <div class="back">
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Register</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <p class="text-center">
+                                        <i class="fa fa-registered fa-3x text-warning"></i>
+                                    </p>Register to start keep tracking of bugs
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                <div class="flipper">
+                    <div class="front">
+                        <div id="ballWrapper" class="animated-lg">
+                            <div id="ball">
+                                <img class="center-block img-responsive" src="~/img/bug_green.png" alt="green bug" width="90" style="margin: 25px 0px 0px 30px;">
+                            </div>
+                            <div id="ballShadow"></div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Demo Admin</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p class="text-center">
+                                    <i class="fa fa-user fa-3x text-success"></i>
+                                </p>Login as a demo admin role to create Projects, assingrole, assing users to project,
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                <div class="flipper">
+                    <div class="front">
+                        <div id="ballWrapper">
+                            <div id="ball">
+                                <img class="center-block img-responsive" src="~/img/bug_red.png" alt="red bug" width="73" style="margin: 34px 0px 0px 38px;">
+                            </div>
+                            <div id="ballShadow"></div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Demo Manager</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p class="text-center">
+                                    <i class="fa fa-user fa-3x text-danger"></i>
+                                </p>Login as a demo Manager to Create tickets, assing user to tickets.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                <div class="flipper">
+                    <div class="front">
+                        <div id="ballWrapper">
+                            <div id="ball">
+                                <img class="center-block img-responsive" src="~/img/yellow bug.jpg" alt="documents" width="90" style="margin: 32px 0px 0px 30px;">
+                            </div>
+                            <div id="ballShadow"></div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Demo Developer</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p class="text-center">
+                                    <i class="fa fa-user fa-3x text-info"></i>
+                                </p>Login as a developer to work on tickets,
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                <div class="flipper">
+                    <div class="front">
+                        <div id="ballWrapper">
+                            <div id="ball">
+                                <img class="center-block img-responsive" src="~/img/orange bug.png" alt="money" width="80" style="margin: 32px 0px 0px 45px;">
+                            </div>
+                            <div id="ballShadow"></div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Demo Submiter</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p class="text-center">
+                                    <i class="fa fa-user fa-3x text-default"></i>
+                                </p>Log in as a demo submiter to submit finish tickets and projects.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer-terms">
+            <p class="small text-muted pull-right">
+                <small>ddzul-Azurewebsites.net © 2017 </small>
+            </p>
+        </div>
+    </div>
+    <!-- End Landing Page -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

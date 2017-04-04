@@ -1,0 +1,91 @@
+﻿@model BugExterminator.Models.Ticket
+
+@{
+    ViewBag.Title = "Details Ticket";
+}
+
+<div class="row">
+    <div class="col-lg-12" style="text-align:center;">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3>@ViewBag.Title</h3>
+            </div>
+            <div class="panel-body">
+                <h3>
+                    @Html.DisplayNameFor(model => model.Title)
+                </h3>
+
+                <h5>
+                    @Html.DisplayFor(model => model.Title)
+                </h5>
+                <h3>
+                    @Html.DisplayNameFor(model => model.OwnerUserId)
+                </h3>
+
+                <h5>
+                    @Html.DisplayFor(model => model.OwnerUserId)
+                </h5>
+
+                <h3>
+                    @Html.DisplayNameFor(model => model.AssignToUserId)
+                </h3>
+
+                <h5>
+                    @Html.DisplayFor(model => model.AssignToUserId)
+                </h5>
+
+                <h3>
+                    @Html.DisplayNameFor(model => model.Description)
+                </h3>
+
+                <h5>
+                    @Html.DisplayFor(model => model.Description)
+                </h5>
+
+                <h3>
+                    @Html.DisplayNameFor(model => model.Created)
+                </h3>
+
+                <h5>
+                    @Html.DisplayFor(model => model.Created)
+                </h5>
+
+                <h3>
+                    @Html.DisplayNameFor(model => model.Updated)
+                </h3>
+
+                <h5>
+                    @Html.DisplayFor(model => model.Updated)
+                </h5>
+
+                <h3>
+                    @Html.DisplayNameFor(model => model.TicketType.Name)
+                </h3>
+
+                <h5>
+                    @Html.DisplayFor(model => model.TicketType.Name)
+                </h5>
+
+                <h3>
+                    @Html.DisplayNameFor(model => model.TicketPriority.Name)
+                </h3>
+
+                <h5>
+                    @Html.DisplayFor(model => model.TicketPriority.Name)
+                </h5>
+
+                <h3>
+                    @Html.DisplayNameFor(model => model.TicketStatus.Name)
+                </h3>
+
+                <h5>
+                    @Html.DisplayFor(model => model.TicketStatus.Name)
+                </h5>
+            </div>
+            <div class="panel-footer">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</div>

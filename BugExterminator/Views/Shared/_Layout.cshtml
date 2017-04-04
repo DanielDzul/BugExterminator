@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <title>Daniel Dazul BugTracker</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- MetisMenu CSS -->
+    <link href="~/vendor/metisMenu/metisMenu.css" rel="stylesheet">
+  
+      <!-- Custom CSS -->
+    <link href="~/dist/css/sb-admin-2.css" rel="stylesheet">
+   
+     <!-- Morris Charts CSS -->
+    <link href="~/vendor/morrisjs/morris.css" rel="stylesheet">
+   
+     <!-- Custom Fonts -->
+    <link href="~/vendor/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
+    <link href="~/css/jquery.dataTables.min.css" rel="stylesheet" />
+</head>
+
+<body>
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Bug Exterminator v1.0</a>
+        </div>
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    @*Add code here*@
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-tasks">
+                    @*Add code here*@
+                </ul>
+                <!-- /.dropdown-tasks -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    @*Add code here*@
+                </ul>
+                <!-- /.dropdown-alerts -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li>
+                        <a href="@Url.Action("Login", "Account", null, null)"><i class="fa fa-user fa-fw"></i>LogIn</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                            }
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Register", "Account", null, null)"><i class="fa fa-user fa-fw"></i>Register</a>
+                        }
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-user-secret fa-fw"></i> Dashboard<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li>
+                                    @Html.ActionLink("Admin Dashboard", "AdminView", "Home")
+                                </li>
+                            }
+                            else if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                            {
+                                <li>
+                                    @Html.ActionLink("PM Dashboard", "Index", "Home")
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    @Html.ActionLink("User Dashboard", "Index", "Home")
+                                </li>
+                            }
+                        </ul>
+                        
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Projects<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                @Html.ActionLink("All Projects","Index","Projects")
+                            </li>
+                            <li>
+                               @Html.ActionLink("My Projects", "MyIndex", "Projects")
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-ticket fa-fw"></i> Tickets<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                               @Html.ActionLink("All Tickets", "Index", "Tickets")
+                            </li>
+                            <li>
+                                @Html.ActionLink("My Tickets", "MyIndex", "Tickets")
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bell fa-fw"></i> Notifications<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                @Html.ActionLink("All Notifications", "Index", "TicketNotifications")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Active Notifications", "ActiveIndex", "TicketNotifications")
+                            </li>
+                            <li>
+                                @Html.ActionLink("My Notifications", "MyIndex", "TicketNotifications")
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-comment fa-fw"></i> Comments<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                @Html.ActionLink("All Comments", "Index", "TicketComments")
+                            </li>
+                            <li>
+                                @Html.ActionLink("MY comments", "MyIndex", "TicketComments")
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-files-o fa-fw"></i> Histories<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                @Html.ActionLink("All Histories", "Index", "TicketHistories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("My  Histories ", "MyIndex", "TicketHistories")
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+</div>
+    <!-- /#page-wrapper -->
+    <div id="page-wrapper">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="~/vendor/metisMenu/metisMenu.min.js"></script>
+  
+    <!-- Morris Charts JavaScript -->
+    <script src="~/vendor/raphael/raphael.min.js"></script>   
+    @*<script src="~/vendor/morrisjs/morris.min.js"></script>*@
+    @*<script src="~/data/morris-data.js"></script>*@
+   
+    <!-- Custom Theme JavaScript -->
+    <script src="~/dist/js/sb-admin-2.js"></script>
+    <script src="~/js/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/tinymce/jquery.tinymce.js"></script>  
+       @RenderSection("scripts", required: false)
+
+
+</body>
+</html>
